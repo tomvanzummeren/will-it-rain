@@ -9,7 +9,7 @@ import nl.tomvanzummeren.willitrain.forecast.Time;
  * @author Tom van Zummeren
  */
 // TODO - Tom: Hebben we deze class echt nodig?
-public class WeatherSnapshot {
+public class RainSnapshot {
 
     private Time time;
 

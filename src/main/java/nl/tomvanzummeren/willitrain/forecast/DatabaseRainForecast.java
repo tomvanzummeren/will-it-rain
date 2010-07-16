@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class DatabaseRainForecast implements RainForecast {
 
-    public RainIntensity lookupRainIntensity(PixelCoordinate pixelCoordinate, Time time) throws ForecastNotFoundException {
+    public RainIntensity lookupRainIntensity(PixelCoordinates pixelCoordinates, Time time) throws ForecastNotFoundException {
         throw new UnsupportedOperationException("implement");
     }
 
-    public void storeRainIntensity(PixelCoordinate pixelCoordinate, Time time, RainIntensity rainIntensity) {
+    public void storeRainIntensity(Time time, PixelCoordinates pixelCoordinates, RainIntensity rainIntensity) {
         throw new UnsupportedOperationException("implement");
     }
 }

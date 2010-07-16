@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * @author Tom van Zummeren
  */
 @Component
-public class BuienradarImageLoader implements RainForecastImageLoader {
+public class BuienradarImageLoader {
 
     public Resource loadRainForecastImage(Time time) {
         throw new UnsupportedOperationException("not yet implemented");

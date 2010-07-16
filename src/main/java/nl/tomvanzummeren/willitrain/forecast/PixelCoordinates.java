@@ -1,12 +1,11 @@
 package nl.tomvanzummeren.willitrain.forecast;
 
 /**
- * Coordinate of one of the pixels contained by a {@code WeatherSnapshot}.
+ * Coordinates of one of the pixels within an image.
  *
  * @author Tom van Zummeren
- * @see nl.tomvanzummeren.willitrain.WeatherSnapshot
  */
-public class PixelCoordinate {
+public class PixelCoordinates {
 
     private int x;
 
@@ -18,24 +17,32 @@ public class PixelCoordinate {
      * @param x horizontal (x) part of the coordinate
      * @param y vertical (y) part of the coordinate
      */
-    public PixelCoordinate(int x, int y) {
+    public PixelCoordinates(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
-        PixelCoordinate that = (PixelCoordinate) o;
+        PixelCoordinates that = (PixelCoordinates) o;
 
-        if (x != that.x) return false;
-        if (y != that.y) return false;
+        return x == that.x && y == that.y;
 
-        return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         int result = x;
@@ -43,10 +50,20 @@ public class PixelCoordinate {
         return result;
     }
 
+    /**
+     * Gets the x-coordinate.
+     *
+     * @return x-coordinate
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Gets the y-coordinate.
+     *
+     * @return y-coordinate
+     */
     public int getY() {
         return y;
     }

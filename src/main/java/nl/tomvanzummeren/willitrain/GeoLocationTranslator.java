@@ -1,6 +1,6 @@
 package nl.tomvanzummeren.willitrain;
 
-import nl.tomvanzummeren.willitrain.forecast.PixelCoordinate;
+import nl.tomvanzummeren.willitrain.forecast.PixelCoordinates;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 */
 @Component
 public class GeoLocationTranslator {
-    public PixelCoordinate toPixelCoordinate(GeoLocation geoLocation) {
+    public PixelCoordinates toPixelCoordinate(GeoLocation geoLocation) {
         throw new UnsupportedOperationException("implement");
     }
 }

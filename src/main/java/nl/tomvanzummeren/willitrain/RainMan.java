@@ -1,6 +1,6 @@
 package nl.tomvanzummeren.willitrain;
 
-import nl.tomvanzummeren.willitrain.forecast.PixelCoordinate;
+import nl.tomvanzummeren.willitrain.forecast.PixelCoordinates;
 import nl.tomvanzummeren.willitrain.forecast.RainForecast;
 import nl.tomvanzummeren.willitrain.forecast.RainIntensity;
 import nl.tomvanzummeren.willitrain.forecast.Time;
@@ -28,9 +28,9 @@ public class RainMan {
     public boolean doesItRain(GeoLocation geoLocation, int minutesInFuture) {
         Time futureTime = Time.minutesInFuture(minutesInFuture);
 
-        PixelCoordinate pixelCoordinate = geoLocationTranslator.toPixelCoordinate(geoLocation);
+        PixelCoordinates pixelCoordinates = geoLocationTranslator.toPixelCoordinate(geoLocation);
 
-        RainIntensity rainIntensity = rainForecast.lookupRainIntensity(pixelCoordinate, futureTime);
+        RainIntensity rainIntensity = rainForecast.lookupRainIntensity(pixelCoordinates, futureTime);
         return rainIntensity == RainIntensity.RAIN;
     }
 }
