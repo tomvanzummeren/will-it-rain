@@ -17,9 +17,13 @@ public class PixelCoordinates {
      * @param x horizontal (x) part of the coordinate
      * @param y vertical (y) part of the coordinate
      */
-    public PixelCoordinates(int x, int y) {
+    private PixelCoordinates(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public static PixelCoordinates pixel(int x, int y) {
+        return new PixelCoordinates(x, y);
     }
 
     /**
