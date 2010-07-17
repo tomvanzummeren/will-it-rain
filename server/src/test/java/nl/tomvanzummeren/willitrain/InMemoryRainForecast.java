@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class InMemoryRainForecast implements RainForecast {
 
-    private Map<DateTime, RainSnapshot> timeToRainSnapshot = new HashMap<DateTime, RainSnapshot>();
+    private final Map<DateTime, RainSnapshot> timeToRainSnapshot = new HashMap<DateTime, RainSnapshot>();
 
     /**
      * {@inheritDoc}
@@ -31,7 +31,7 @@ public class InMemoryRainForecast implements RainForecast {
 
     private static class InMemoryRainSnapshot implements RainSnapshot {
 
-        private Map<PixelCoordinates, RainIntensity> pixelCoordinateToRainIntensity = new HashMap<PixelCoordinates, RainIntensity>();
+        private final Map<PixelCoordinates, RainIntensity> pixelCoordinateToRainIntensity = new HashMap<PixelCoordinates, RainIntensity>();
 
         public void storeRainIntensity(PixelCoordinates pixelCoordinates, RainIntensity rainIntensity) {
             pixelCoordinateToRainIntensity.put(pixelCoordinates, rainIntensity);

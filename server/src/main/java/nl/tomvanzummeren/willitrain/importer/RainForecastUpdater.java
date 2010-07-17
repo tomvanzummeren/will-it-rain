@@ -18,13 +18,13 @@ import java.io.IOException;
 @Component
 public class RainForecastUpdater {
 
-    private BuienradarRainForecastImporter rainForecastImporter;
-
-    private RainForecast rainForecast;
-
     private static final int KEEP_FORECAST_MINUTES_IN_FUTURE = 115;
 
     private static final int KEEP_FORECAST_MINUTES_IN_PAST = 5;
+
+    private final BuienradarRainForecastImporter rainForecastImporter;
+
+    private final RainForecast rainForecast;
 
     @Autowired
     public RainForecastUpdater(BuienradarRainForecastImporter rainForecastImporter, RainForecast rainForecast) {
