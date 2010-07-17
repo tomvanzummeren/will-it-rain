@@ -3,6 +3,7 @@ package nl.tomvanzummeren.willitrain;
 import nl.tomvanzummeren.willitrain.forecast.PixelCoordinates;
 import nl.tomvanzummeren.willitrain.forecast.RainForecast;
 import nl.tomvanzummeren.willitrain.forecast.RainIntensity;
+import nl.tomvanzummeren.willitrain.forecast.RainSnapshot;
 import org.joda.time.DateTime;
 
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import java.util.Map;
  */
 public class InMemoryRainForecast implements RainForecast {
 
-    private final Map<DateTime, RainSnapshot> timeToRainSnapshot = new HashMap<DateTime, RainSnapshot>();
+    private Map<DateTime, RainSnapshot> timeToRainSnapshot = new HashMap<DateTime, RainSnapshot>();
 
     /**
      * {@inheritDoc}
@@ -31,7 +32,7 @@ public class InMemoryRainForecast implements RainForecast {
 
     private static class InMemoryRainSnapshot implements RainSnapshot {
 
-        private final Map<PixelCoordinates, RainIntensity> pixelCoordinateToRainIntensity = new HashMap<PixelCoordinates, RainIntensity>();
+        private Map<PixelCoordinates, RainIntensity> pixelCoordinateToRainIntensity = new HashMap<PixelCoordinates, RainIntensity>();
 
         public void storeRainIntensity(PixelCoordinates pixelCoordinates, RainIntensity rainIntensity) {
             pixelCoordinateToRainIntensity.put(pixelCoordinates, rainIntensity);

@@ -1,4 +1,4 @@
-package nl.tomvanzummeren.willitrain;
+package nl.tomvanzummeren.willitrain.notifier;
 
 import nl.tomvanzummeren.willitrain.forecast.PixelCoordinates;
 import nl.tomvanzummeren.willitrain.forecast.RainForecast;

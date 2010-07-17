@@ -1,5 +1,6 @@
 package nl.tomvanzummeren.willitrain;
 
+import nl.tomvanzummeren.willitrain.forecast.RainSnapshot;
 import nl.tomvanzummeren.willitrain.forecast.Time;
 import nl.tomvanzummeren.willitrain.importer.BuienradarImageLoader;
 import nl.tomvanzummeren.willitrain.importer.BuienradarRainForecastImporter;
@@ -8,10 +9,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 
-import static nl.tomvanzummeren.willitrain.forecast.PixelCoordinates.*;
-import static nl.tomvanzummeren.willitrain.forecast.RainIntensity.*;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static nl.tomvanzummeren.willitrain.forecast.PixelCoordinates.forPixel;
+import static nl.tomvanzummeren.willitrain.forecast.RainIntensity.NONE;
+import static nl.tomvanzummeren.willitrain.forecast.RainIntensity.RAIN;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Tests {@link nl.tomvanzummeren.willitrain.importer.BuienradarRainForecastImporter}.
