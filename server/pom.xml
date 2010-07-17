@@ -39,14 +39,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>3.0.3.RELEASE</version>
-            <!--
             <exclusions>
                 <exclusion>
                     <groupId>commons-logging</groupId>
                     <artifactId>commons-logging</artifactId>
                 </exclusion>
             </exclusions>
-            -->
         </dependency>
 
         <dependency>
