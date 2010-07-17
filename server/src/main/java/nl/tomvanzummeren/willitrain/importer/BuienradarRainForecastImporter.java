@@ -1,9 +1,9 @@
 package nl.tomvanzummeren.willitrain.importer;
 
-import nl.tomvanzummeren.willitrain.RainSnapshot;
 import nl.tomvanzummeren.willitrain.forecast.PixelCoordinates;
 import nl.tomvanzummeren.willitrain.forecast.RainForecast;
 import nl.tomvanzummeren.willitrain.forecast.RainIntensity;
+import nl.tomvanzummeren.willitrain.forecast.RainSnapshot;
 import org.apache.sanselan.ImageReadException;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-import static nl.tomvanzummeren.willitrain.forecast.PixelCoordinates.*;
+import static nl.tomvanzummeren.willitrain.forecast.PixelCoordinates.forPixel;
 
 /**
  * Imports rain forecast images from an external source and stores them in our local

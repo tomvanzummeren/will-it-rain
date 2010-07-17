@@ -1,6 +1,5 @@
 package nl.tomvanzummeren.willitrain.forecast;
 
-import nl.tomvanzummeren.willitrain.RainSnapshot;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
 

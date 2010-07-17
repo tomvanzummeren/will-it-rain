@@ -1,7 +1,4 @@
-package nl.tomvanzummeren.willitrain;
-
-import nl.tomvanzummeren.willitrain.forecast.PixelCoordinates;
-import nl.tomvanzummeren.willitrain.forecast.RainIntensity;
+package nl.tomvanzummeren.willitrain.forecast;
 
 /**
  * Snapshot of the weather at a fixed point in time. The snapshot is composed of {@code Pixelcoordinates}
