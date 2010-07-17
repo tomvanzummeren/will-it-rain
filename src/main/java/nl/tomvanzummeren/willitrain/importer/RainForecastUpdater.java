@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 /**
- * Updates the entire local rain forecast using a {@link BuienradarRainForecastImporterr}. The only public method
+ * Updates the entire local rain forecast using a {@link BuienradarRainForecastImporter}. The only public method
  * {@link #updateRainForecast()} is called each 5 minutes to keep the rain forecast up-to-date.
  *
  * @author Tom van Zummeren
@@ -18,14 +18,14 @@ import java.io.IOException;
 @Component
 public class RainForecastUpdater {
 
-    private BuienradarRainForecastImporterr rainForecastImporter;
+    private BuienradarRainForecastImporter rainForecastImporter;
 
     private RainForecast rainForecast;
 
     private static final int KEEP_FORECAST_MINUTES_IN_FUTURE = 115;
 
     @Autowired
-    public RainForecastUpdater(BuienradarRainForecastImporterr rainForecastImporter, RainForecast rainForecast) {
+    public RainForecastUpdater(BuienradarRainForecastImporter rainForecastImporter, RainForecast rainForecast) {
         this.rainForecastImporter = rainForecastImporter;
         this.rainForecast = rainForecast;
     }

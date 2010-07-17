@@ -2,7 +2,7 @@ package nl.tomvanzummeren.willitrain;
 
 import nl.tomvanzummeren.willitrain.forecast.Time;
 import nl.tomvanzummeren.willitrain.importer.BuienradarImageLoader;
-import nl.tomvanzummeren.willitrain.importer.BuienradarRainForecastImporterr;
+import nl.tomvanzummeren.willitrain.importer.BuienradarRainForecastImporter;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
  */
 public class BuienRadarRainForecastImporterTest {
 
-    private BuienradarRainForecastImporterr importerBuienradar;
+    private BuienradarRainForecastImporter importerBuienradar;
 
     private InMemoryRainForecast rainForecast;
 
@@ -31,7 +31,7 @@ public class BuienRadarRainForecastImporterTest {
         rainForecast = new InMemoryRainForecast();
         mockImageLoader = mock(BuienradarImageLoader.class);
 
-        importerBuienradar = new BuienradarRainForecastImporterr(rainForecast, mockImageLoader);
+        importerBuienradar = new BuienradarRainForecastImporter(rainForecast, mockImageLoader);
     }
 
     @Test
