@@ -1,0 +1,11 @@
+.idea/*
+classes/*
+test-classes/*
+target/*
+dist/*
+*jar
+*.zip
+*.iml
+*.ipr
+*.iws
+
