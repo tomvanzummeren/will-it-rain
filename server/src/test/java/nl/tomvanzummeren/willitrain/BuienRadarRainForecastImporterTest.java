@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 
-import static junit.framework.Assert.*;
 import static nl.tomvanzummeren.willitrain.forecast.PixelCoordinates.*;
 import static nl.tomvanzummeren.willitrain.forecast.RainIntensity.*;
 import static org.mockito.Mockito.*;
