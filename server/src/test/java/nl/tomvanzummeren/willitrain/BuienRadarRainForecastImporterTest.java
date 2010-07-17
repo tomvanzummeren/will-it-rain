@@ -10,6 +10,7 @@ import org.springframework.core.io.ClassPathResource;
 
 import static nl.tomvanzummeren.willitrain.forecast.PixelCoordinates.*;
 import static nl.tomvanzummeren.willitrain.forecast.RainIntensity.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
