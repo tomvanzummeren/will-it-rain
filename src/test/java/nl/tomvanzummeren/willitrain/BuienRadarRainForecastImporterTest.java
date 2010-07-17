@@ -1,8 +1,8 @@
 package nl.tomvanzummeren.willitrain;
 
 import nl.tomvanzummeren.willitrain.forecast.Time;
-import nl.tomvanzummeren.willitrain.importer.BuienRadarRainForecastImporter;
 import nl.tomvanzummeren.willitrain.importer.BuienradarImageLoader;
+import nl.tomvanzummeren.willitrain.importer.BuienradarRainForecastImporterr;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
  */
 public class BuienRadarRainForecastImporterTest {
 
-    private BuienRadarRainForecastImporter importerBuienRadar;
+    private BuienradarRainForecastImporterr importerBuienradar;
 
     private InMemoryRainForecast rainForecast;
 
@@ -31,7 +31,7 @@ public class BuienRadarRainForecastImporterTest {
         rainForecast = new InMemoryRainForecast();
         mockImageLoader = mock(BuienradarImageLoader.class);
 
-        importerBuienRadar = new BuienRadarRainForecastImporter(rainForecast, mockImageLoader);
+        importerBuienradar = new BuienradarRainForecastImporterr(rainForecast, mockImageLoader);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class BuienRadarRainForecastImporterTest {
 
         when(mockImageLoader.loadRainForecastImage(timeInFuture)).thenReturn(new ClassPathResource("rain-forecast.gif"));
 
-        importerBuienRadar.importForTimeInFuture(timeInFuture);
+        importerBuienradar.importForTimeInFuture(timeInFuture);
 
         RainSnapshot snapshot = rainForecast.forRainSnapshot(timeInFuture);
         // Check a few pixels that should indicate rain

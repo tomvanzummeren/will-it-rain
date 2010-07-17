@@ -24,7 +24,7 @@ import static nl.tomvanzummeren.willitrain.forecast.PixelCoordinates.*;
  * @author Tom van Zummeren
  */
 @Component
-public class BuienRadarRainForecastImporter {
+public class BuienradarRainForecastImporterr {
 
     private static final int IMAGE_RANGE_MINIMUM_Y = 12;
 
@@ -41,7 +41,7 @@ public class BuienRadarRainForecastImporter {
      * @param imageLoader  to load a forecast image from an external source
      */
     @Autowired
-    public BuienRadarRainForecastImporter(RainForecast rainForecast, BuienradarImageLoader imageLoader) {
+    public BuienradarRainForecastImporterr(RainForecast rainForecast, BuienradarImageLoader imageLoader) {
         this.rainForecast = rainForecast;
         this.imageLoader = imageLoader;
     }
