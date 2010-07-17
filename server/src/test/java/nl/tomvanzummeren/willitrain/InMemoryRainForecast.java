@@ -21,11 +21,11 @@ public class InMemoryRainForecast implements RainForecast {
     /**
      * {@inheritDoc}
      */
-    public RainSnapshot forRainSnapshot(DateTime time) {
-        RainSnapshot rainSnapshot = timeToRainSnapshot.get(time);
+    public RainSnapshot forRainSnapshot(DateTime dateTime) {
+        RainSnapshot rainSnapshot = timeToRainSnapshot.get(dateTime);
         if (rainSnapshot == null) {
             rainSnapshot = new InMemoryRainSnapshot();
-            timeToRainSnapshot.put(time, rainSnapshot);
+            timeToRainSnapshot.put(dateTime, rainSnapshot);
         }
         return rainSnapshot;
     }

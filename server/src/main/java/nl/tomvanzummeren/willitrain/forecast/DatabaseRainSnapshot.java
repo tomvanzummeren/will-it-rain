@@ -9,12 +9,12 @@ import javax.persistence.EntityManager;
  */
 public class DatabaseRainSnapshot implements RainSnapshot {
 
-    private final DateTime time;
+    private final DateTime dateTime;
 
     private final EntityManager entityManager;
 
-    public DatabaseRainSnapshot(DateTime time, EntityManager entityManager) {
-        this.time = time;
+    public DatabaseRainSnapshot(DateTime dateTime, EntityManager entityManager) {
+        this.dateTime = dateTime;
         this.entityManager = entityManager;
     }
 

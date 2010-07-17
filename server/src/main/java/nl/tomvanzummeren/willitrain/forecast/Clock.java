@@ -2,24 +2,23 @@ package nl.tomvanzummeren.willitrain.forecast;
 
 import org.joda.time.DateTime;
 import org.joda.time.MutableDateTime;
+import org.springframework.stereotype.Component;
 
 /**
- * Represents a specific time on a day
+ * Clock to help working with dates and time.
  *
  * @author Tom van Zummeren
  */
-public class Time {
+@Component
+public class Clock {
 
-    private Time() {
-    }
-
-    public static DateTime minutesInFuture(int minutes) {
+    public DateTime minutesInFuture(int minutes) {
         MutableDateTime dateTime = new MutableDateTime();
         dateTime.addMinutes(minutes);
         return dateTime.toDateTime();
     }
 
-    public static DateTime minutesInPast(int minutes) {
+    public DateTime minutesInPast(int minutes) {
         return minutesInFuture(-minutes);
     }
 }

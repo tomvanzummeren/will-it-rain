@@ -1,7 +1,6 @@
 package nl.tomvanzummeren.willitrain.importer;
 
-import nl.tomvanzummeren.willitrain.forecast.RainForecast;
-import nl.tomvanzummeren.willitrain.forecast.Time;
+import nl.tomvanzummeren.willitrain.forecast.Clock;
 import org.apache.sanselan.ImageReadException;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,21 +23,21 @@ public class RainForecastUpdater {
 
     private final BuienradarRainForecastImporter rainForecastImporter;
 
-    private final RainForecast rainForecast;
+    private final Clock clock;
 
     @Autowired
-    public RainForecastUpdater(BuienradarRainForecastImporter rainForecastImporter, RainForecast rainForecast) {
+    public RainForecastUpdater(BuienradarRainForecastImporter rainForecastImporter, Clock clock) {
         this.rainForecastImporter = rainForecastImporter;
-        this.rainForecast = rainForecast;
+        this.clock = clock;
     }
 
     public void updateRainForecast() {
-        DateTime fiveMinutesAgo = Time.minutesInPast(KEEP_FORECAST_MINUTES_IN_PAST);
-        rainForecast.forRainSnapshot(fiveMinutesAgo).delete();
+        DateTime fiveMinutesAgo = clock.minutesInPast(KEEP_FORECAST_MINUTES_IN_PAST);
+        rainForecastImporter.deleteSnapshotForTime(fiveMinutesAgo);
 
         try {
-            DateTime inFuture = Time.minutesInFuture(KEEP_FORECAST_MINUTES_IN_FUTURE);
-            rainForecastImporter.importForTimeInFuture(inFuture);
+            DateTime inFuture = clock.minutesInFuture(KEEP_FORECAST_MINUTES_IN_FUTURE);
+            rainForecastImporter.importSnapshotForTime(inFuture);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ImageReadException e) {

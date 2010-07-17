@@ -34,9 +34,13 @@ public class GeoLocation {
 
         GeoLocation that = (GeoLocation) o;
 
-        if (latitude != null ? !latitude.equals(that.latitude) : that.latitude != null) return false;
-        if (longitude != null ? !longitude.equals(that.longitude) : that.longitude != null) return false;
-
+        if (latitude != null ? !latitude.equals(that.latitude) : that.latitude != null) {
+            return false;
+        }
+        //noinspection RedundantIfStatement
+        if (longitude != null ? !longitude.equals(that.longitude) : that.longitude != null) {
+            return false;
+        }
         return true;
     }
 

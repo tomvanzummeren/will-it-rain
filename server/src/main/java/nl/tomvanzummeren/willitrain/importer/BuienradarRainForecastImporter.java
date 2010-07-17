@@ -49,15 +49,15 @@ public class BuienradarRainForecastImporter {
     /**
      * Imports a forecast image for the given time in the future and stores the image in our local {@link RainForecast}.
      *
-     * @param timeInFuture some time in the close future
+     * @param dateTime some time in the close future
      * @throws IOException        when unable to download the image
      * @throws ImageReadException when image is in an unsupported or illegal format
      */
-    public void importForTimeInFuture(DateTime timeInFuture) throws IOException, ImageReadException {
-        Resource forecastImageResource = imageLoader.loadRainForecastImage(timeInFuture);
+    public void importSnapshotForTime(DateTime dateTime) throws IOException, ImageReadException {
+        Resource forecastImageResource = imageLoader.loadRainForecastImage(dateTime);
         BufferedImage forecastImage = ImageIO.read(forecastImageResource.getInputStream());
 
-        RainSnapshot rainSnapshot = rainForecast.forRainSnapshot(timeInFuture);
+        RainSnapshot rainSnapshot = rainForecast.forRainSnapshot(dateTime);
 
         for (int y = 0; y < forecastImage.getHeight(); y++) {
             for (int x = 0; x < forecastImage.getWidth(); x++) {
@@ -66,6 +66,10 @@ public class BuienradarRainForecastImporter {
                 }
             }
         }
+    }
+
+    public void deleteSnapshotForTime(DateTime dateTime) {
+        rainForecast.forRainSnapshot(dateTime).delete();
     }
 
     /**

@@ -1,9 +1,9 @@
 package nl.tomvanzummeren.willitrain.notifier;
 
+import nl.tomvanzummeren.willitrain.forecast.Clock;
 import nl.tomvanzummeren.willitrain.forecast.PixelCoordinates;
 import nl.tomvanzummeren.willitrain.forecast.RainForecast;
 import nl.tomvanzummeren.willitrain.forecast.RainIntensity;
-import nl.tomvanzummeren.willitrain.forecast.Time;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,14 +20,17 @@ public class RainMan {
 
     private final GeoLocationTranslator geoLocationTranslator;
 
+    private final Clock clock;
+
     @Autowired
-    public RainMan(RainForecast rainForecast, GeoLocationTranslator geoLocationTranslator) {
+    public RainMan(RainForecast rainForecast, GeoLocationTranslator geoLocationTranslator, Clock clock) {
         this.rainForecast = rainForecast;
         this.geoLocationTranslator = geoLocationTranslator;
+        this.clock = clock;
     }
 
     public boolean willItRain(GeoLocation geoLocation, int minutesInFuture) {
-        DateTime futureTime = Time.minutesInFuture(minutesInFuture);
+        DateTime futureTime = clock.minutesInFuture(minutesInFuture);
 
         PixelCoordinates pixelCoordinates = geoLocationTranslator.toPixelCoordinate(geoLocation);
 

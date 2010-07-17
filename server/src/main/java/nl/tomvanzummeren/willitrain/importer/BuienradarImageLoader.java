@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BuienradarImageLoader {
 
-    public Resource loadRainForecastImage(DateTime time) {
+    public Resource loadRainForecastImage(DateTime dateTime) {
         throw new UnsupportedOperationException("implement");
     }
 }

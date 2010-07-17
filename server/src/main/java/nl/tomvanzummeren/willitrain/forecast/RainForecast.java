@@ -11,5 +11,5 @@ import org.joda.time.DateTime;
  */
 public interface RainForecast {
 
-    RainSnapshot forRainSnapshot(DateTime time);
+    RainSnapshot forRainSnapshot(DateTime dateTime);
 }

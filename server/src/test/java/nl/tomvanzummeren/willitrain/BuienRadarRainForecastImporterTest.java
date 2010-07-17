@@ -1,7 +1,6 @@
 package nl.tomvanzummeren.willitrain;
 
 import nl.tomvanzummeren.willitrain.forecast.RainSnapshot;
-import nl.tomvanzummeren.willitrain.forecast.Time;
 import nl.tomvanzummeren.willitrain.importer.BuienradarImageLoader;
 import nl.tomvanzummeren.willitrain.importer.BuienradarRainForecastImporter;
 import org.joda.time.DateTime;
@@ -39,13 +38,13 @@ public class BuienRadarRainForecastImporterTest {
 
     @Test
     public void importsRainForecastImage() throws Exception {
-        DateTime timeInFuture = Time.minutesInFuture(5);
+        DateTime dateTimeInFuture = new DateTime();
 
-        when(mockImageLoader.loadRainForecastImage(timeInFuture)).thenReturn(new ClassPathResource("rain-forecast.gif"));
+        when(mockImageLoader.loadRainForecastImage(dateTimeInFuture)).thenReturn(new ClassPathResource("rain-forecast.gif"));
 
-        importerBuienradar.importForTimeInFuture(timeInFuture);
+        importerBuienradar.importSnapshotForTime(dateTimeInFuture);
 
-        RainSnapshot snapshot = rainForecast.forRainSnapshot(timeInFuture);
+        RainSnapshot snapshot = rainForecast.forRainSnapshot(dateTimeInFuture);
         // Check a few pixels that should indicate rain
         assertEquals(RAIN, snapshot.lookupRainIntensity(forPixel(176, 285)));
         assertEquals(RAIN, snapshot.lookupRainIntensity(forPixel(116, 347)));

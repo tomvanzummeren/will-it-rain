@@ -16,7 +16,7 @@ public class DatabaseRainForecast implements RainForecast {
     private EntityManager entityManager;
 
     @Override
-    public RainSnapshot forRainSnapshot(DateTime time) {
-        return new DatabaseRainSnapshot(time, entityManager);
+    public RainSnapshot forRainSnapshot(DateTime dateTime) {
+        return new DatabaseRainSnapshot(dateTime, entityManager);
     }
 }
