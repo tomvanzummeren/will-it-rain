@@ -14,7 +14,7 @@ import static nl.tomvanzummeren.willitrain.forecast.RainIntensity.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Tests {@link }
+ * Tests {@link nl.tomvanzummeren.willitrain.importer.BuienradarRainForecastImporter}.
  *
  * @author Tom van Zummeren
  */

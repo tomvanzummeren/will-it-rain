@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 public class DatabaseRainSnapshot implements RainSnapshot {
 
     private final DateTime time;
-    
+
     private final EntityManager entityManager;
 
     public DatabaseRainSnapshot(DateTime time, EntityManager entityManager) {
@@ -21,11 +21,16 @@ public class DatabaseRainSnapshot implements RainSnapshot {
 
     @Override
     public void storeRainIntensity(PixelCoordinates pixelCoordinates, RainIntensity rainIntensity) {
-        throw new UnsupportedOperationException("implement");
+        throw new UnsupportedOperationException("not implemented");
     }
 
     @Override
     public RainIntensity lookupRainIntensity(PixelCoordinates pixelCoordinates) {
-        throw new UnsupportedOperationException("implement");
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    @Override
+    public void delete() {
+        throw new UnsupportedOperationException("not implemented");
     }
 }

@@ -41,5 +41,10 @@ public class InMemoryRainForecast implements RainForecast {
             RainIntensity intensity = pixelCoordinateToRainIntensity.get(pixelCoordinates);
             return intensity == null ? RainIntensity.NONE : intensity;
         }
+
+        @Override
+        public void delete() {
+            throw new UnsupportedOperationException("not implemented");
+        }
     }
 }

@@ -69,24 +69,13 @@ public class BuienradarRainForecastImporter {
     }
 
     /**
-     * Determines whether a pixel y-coordinate is within range. If outisde of the range, the pixel probably is part
-     * of the labels on the top and bottom of the image.
-     *
-     * @param coordinates coordinates of the pixel
-     * @return {@code true} if pixel is within range, {@code false} if not
-     */
-    private boolean withinRange(PixelCoordinates coordinates) {
-        return coordinates.getY() >= IMAGE_RANGE_MINIMUM_Y && coordinates.getY() <= IMAGE_RANGE_MAXIMUM_Y;
-    }
-
-    /**
      * Determines whether a pixel in the given forecast image indicates rain.
      *
-     * @param forecastImage    forecast image
-     * @param coordinates coordinates of the pixel
+     * @param forecastImage forecast image
+     * @param coordinates   coordinates of the pixel
      * @return {@code true} if the pixel indicates rain, {@code false} if not
      */
-    private boolean indicatesRain(BufferedImage forecastImage, PixelCoordinates coordinates) {
+    private static boolean indicatesRain(BufferedImage forecastImage, PixelCoordinates coordinates) {
         if (!withinRange(coordinates)) {
             return false;
         }
@@ -95,4 +84,14 @@ public class BuienradarRainForecastImporter {
         return !color.equals(Color.BLACK);
     }
 
+    /**
+     * Determines whether a pixel y-coordinate is within range. If outisde of the range, the pixel probably is part
+     * of the labels on the top and bottom of the image.
+     *
+     * @param coordinates coordinates of the pixel
+     * @return {@code true} if pixel is within range, {@code false} if not
+     */
+    private static boolean withinRange(PixelCoordinates coordinates) {
+        return coordinates.getY() >= IMAGE_RANGE_MINIMUM_Y && coordinates.getY() <= IMAGE_RANGE_MAXIMUM_Y;
+    }
 }
