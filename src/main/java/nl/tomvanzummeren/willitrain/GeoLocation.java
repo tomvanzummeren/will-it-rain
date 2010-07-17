@@ -1,6 +1,6 @@
 package nl.tomvanzummeren.willitrain;
 
-import static java.lang.Float.*;
+import java.math.BigDecimal;
 
 /**
  * Represents a specific location on earth.
@@ -9,9 +9,9 @@ import static java.lang.Float.*;
  */
 public class GeoLocation {
 
-    private final float latitude;
+    private final BigDecimal latitude;
 
-    private final float longitude;
+    private final BigDecimal longitude;
 
     /**
      * Constructs a new {@code GeoLocation} from a longitude and a latitude.
@@ -19,7 +19,7 @@ public class GeoLocation {
      * @param latitude  latitude of the geo-location
      * @param longitude longitude of the geo-location
      */
-    public GeoLocation(float latitude, float longitude) {
+    public GeoLocation(BigDecimal latitude, BigDecimal longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -34,8 +34,10 @@ public class GeoLocation {
 
         GeoLocation that = (GeoLocation) o;
 
-        return compare(that.latitude, latitude) == 0 && compare(that.longitude, longitude) == 0;
+        if (latitude != null ? !latitude.equals(that.latitude) : that.latitude != null) return false;
+        if (longitude != null ? !longitude.equals(that.longitude) : that.longitude != null) return false;
 
+        return true;
     }
 
     /**
@@ -43,8 +45,8 @@ public class GeoLocation {
      */
     @Override
     public int hashCode() {
-        int result = (latitude != +0.0f ? floatToIntBits(latitude) : 0);
-        result = 31 * result + (longitude != +0.0f ? floatToIntBits(longitude) : 0);
+        int result = latitude != null ? latitude.hashCode() : 0;
+        result = 31 * result + (longitude != null ? longitude.hashCode() : 0);
         return result;
     }
 
@@ -53,7 +55,7 @@ public class GeoLocation {
      *
      * @return latitude
      */
-    public float getLatitude() {
+    public BigDecimal getLatitude() {
         return latitude;
     }
 
@@ -62,7 +64,7 @@ public class GeoLocation {
      *
      * @return latitude
      */
-    public float getLongitude() {
+    public BigDecimal getLongitude() {
         return longitude;
     }
 }
