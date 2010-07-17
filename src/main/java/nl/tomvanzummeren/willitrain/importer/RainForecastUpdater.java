@@ -24,6 +24,8 @@ public class RainForecastUpdater {
 
     private static final int KEEP_FORECAST_MINUTES_IN_FUTURE = 115;
 
+    private static final int KEEP_FORECAST_MINUTES_IN_PAST = 5;
+
     @Autowired
     public RainForecastUpdater(BuienradarRainForecastImporter rainForecastImporter, RainForecast rainForecast) {
         this.rainForecastImporter = rainForecastImporter;
@@ -31,8 +33,9 @@ public class RainForecastUpdater {
     }
 
     public void updateRainForecast() {
-        DateTime fiveMinutesAgo = Time.minutesInPast(5);
+        DateTime fiveMinutesAgo = Time.minutesInPast(KEEP_FORECAST_MINUTES_IN_PAST);
         rainForecast.forRainSnapshot(fiveMinutesAgo).delete();
+
         try {
             DateTime inFuture = Time.minutesInFuture(KEEP_FORECAST_MINUTES_IN_FUTURE);
             rainForecastImporter.importForTimeInFuture(inFuture);
