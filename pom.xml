@@ -3,7 +3,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>nl.tomvanzummeren</groupId>
-    <artifactId>will-it-rain</artifactId>
+    <artifactId>will-it-rain-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
