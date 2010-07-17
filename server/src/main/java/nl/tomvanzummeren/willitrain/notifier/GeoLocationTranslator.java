@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class GeoLocationTranslator {
-    
-    public PixelCoordinates toPixelCoordinate(GeoLocation geoLocation) {
+
+    public PixelCoordinates toPixelCoordinates(GeoLocation geoLocation) {
         throw new UnsupportedOperationException("implement");
     }
 }

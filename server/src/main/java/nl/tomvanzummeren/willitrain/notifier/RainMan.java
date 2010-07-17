@@ -31,9 +31,11 @@ public class RainMan {
 
     public boolean willItRain(GeoLocation geoLocation, int minutesInFuture) {
         DateTime futureTime = clock.minutesInFuture(minutesInFuture);
+        return willItRain(geoLocation, futureTime);
+    }
 
-        PixelCoordinates pixelCoordinates = geoLocationTranslator.toPixelCoordinate(geoLocation);
-
+    private boolean willItRain(GeoLocation geoLocation, DateTime futureTime) {
+        PixelCoordinates pixelCoordinates = geoLocationTranslator.toPixelCoordinates(geoLocation);
         RainIntensity rainIntensity = rainForecast.forRainSnapshot(futureTime).lookupRainIntensity(pixelCoordinates);
         return rainIntensity == RainIntensity.RAIN;
     }
