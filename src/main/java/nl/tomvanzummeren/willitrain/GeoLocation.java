@@ -9,9 +9,9 @@ import static java.lang.Float.*;
  */
 public class GeoLocation {
 
-    private float latitude;
+    private final float latitude;
 
-    private float longitude;
+    private final float longitude;
 
     /**
      * Constructs a new {@code GeoLocation} from a longitude and a latitude.

@@ -4,6 +4,7 @@ import nl.tomvanzummeren.willitrain.forecast.PixelCoordinates;
 import nl.tomvanzummeren.willitrain.forecast.RainForecast;
 import nl.tomvanzummeren.willitrain.forecast.RainIntensity;
 import nl.tomvanzummeren.willitrain.forecast.Time;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +16,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class RainMan {
 
-    private RainForecast rainForecast;
+    private final RainForecast rainForecast;
 
-    private GeoLocationTranslator geoLocationTranslator;
+    private final GeoLocationTranslator geoLocationTranslator;
 
     @Autowired
     public RainMan(RainForecast rainForecast, GeoLocationTranslator geoLocationTranslator) {
@@ -25,12 +26,12 @@ public class RainMan {
         this.geoLocationTranslator = geoLocationTranslator;
     }
 
-    public boolean doesItRain(GeoLocation geoLocation, int minutesInFuture) {
-        Time futureTime = Time.minutesInFuture(minutesInFuture);
+    public boolean willItRain(GeoLocation geoLocation, int minutesInFuture) {
+        DateTime futureTime = Time.minutesInFuture(minutesInFuture);
 
         PixelCoordinates pixelCoordinates = geoLocationTranslator.toPixelCoordinate(geoLocation);
 
-        RainIntensity rainIntensity = rainForecast.lookupRainIntensity(pixelCoordinates, futureTime);
+        RainIntensity rainIntensity = rainForecast.forRainSnapshot(futureTime).lookupRainIntensity(pixelCoordinates);
         return rainIntensity == RainIntensity.RAIN;
     }
 }

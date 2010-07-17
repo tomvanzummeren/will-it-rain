@@ -1,5 +1,8 @@
 package nl.tomvanzummeren.willitrain.forecast;
 
+import org.joda.time.DateTime;
+import org.joda.time.MutableDateTime;
+
 /**
  * Represents a specific time on a day
  *
@@ -7,16 +10,16 @@ package nl.tomvanzummeren.willitrain.forecast;
  */
 public class Time {
 
-    private int hours;
-
-    private int minutes;
-
-    public Time(int hours, int minutes) {
-        this.hours = hours;
-        this.minutes = minutes;
+    private Time() {
     }
 
-    public static Time minutesInFuture(int minutesInFuture) {
-        throw new UnsupportedOperationException("implement");
+    public static DateTime minutesInFuture(int minutes) {
+        MutableDateTime dateTime = new MutableDateTime();
+        dateTime.addMinutes(minutes);
+        return dateTime.toDateTime();
+    }
+
+    public static DateTime minutesInPast(int minutes) {
+        return minutesInFuture(-minutes);
     }
 }

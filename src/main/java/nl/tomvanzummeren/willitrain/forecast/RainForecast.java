@@ -1,5 +1,8 @@
 package nl.tomvanzummeren.willitrain.forecast;
 
+import nl.tomvanzummeren.willitrain.RainSnapshot;
+import org.joda.time.DateTime;
+
 /**
  * Provides access to the rain forecast data store. Because the rain forecast is stored based on pixels, clients need to
  * specify locations as {@link PixelCoordinates}s. See
@@ -9,15 +12,5 @@ package nl.tomvanzummeren.willitrain.forecast;
  */
 public interface RainForecast {
 
-    /**
-     * Looks up the rain location on a given geo location in a certain time.
-     *
-     * @param pixelCoordinates geo location to lookup
-     * @param time        time in future
-     * @return rain intensity for the given geo location and time
-     * @throws ForecastNotFoundException when no data is available for the given time
-     */
-    RainIntensity lookupRainIntensity(PixelCoordinates pixelCoordinates, Time time) throws ForecastNotFoundException;
-
-    void storeRainIntensity(Time time, PixelCoordinates pixelCoordinates, RainIntensity rainIntensity);
+    RainSnapshot forRainSnapshot(DateTime time);
 }

@@ -1,10 +1,9 @@
 package nl.tomvanzummeren.willitrain;
 
-import nl.tomvanzummeren.willitrain.forecast.ForecastNotFoundException;
 import nl.tomvanzummeren.willitrain.forecast.PixelCoordinates;
 import nl.tomvanzummeren.willitrain.forecast.RainForecast;
 import nl.tomvanzummeren.willitrain.forecast.RainIntensity;
-import nl.tomvanzummeren.willitrain.forecast.Time;
+import org.joda.time.DateTime;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,40 +15,31 @@ import java.util.Map;
  */
 public class InMemoryRainForecast implements RainForecast {
 
-    private Map<Time, WeatherSnapshot> timeToWeatherSnapshot = new HashMap<Time, WeatherSnapshot>();
+    private Map<DateTime, RainSnapshot> timeToRainSnapshot = new HashMap<DateTime, RainSnapshot>();
 
-    public RainIntensity lookupRainIntensity(PixelCoordinates pixelCoordinates, Time time) throws ForecastNotFoundException {
-        WeatherSnapshot weatherSnapshot = timeToWeatherSnapshot.get(time);
-        if (weatherSnapshot == null) {
-            throw new ForecastNotFoundException();
+    /**
+     * {@inheritDoc}
+     */
+    public RainSnapshot forRainSnapshot(DateTime time) {
+        RainSnapshot rainSnapshot = timeToRainSnapshot.get(time);
+        if (rainSnapshot == null) {
+            rainSnapshot = new InMemoryRainSnapshot();
+            timeToRainSnapshot.put(time, rainSnapshot);
         }
-        RainIntensity intensity = weatherSnapshot.getRainIntensity(pixelCoordinates);
-        return intensity == null ? RainIntensity.NONE : intensity;
+        return rainSnapshot;
     }
 
-    public void storeRainIntensity(Time time, PixelCoordinates pixelCoordinates, RainIntensity rainIntensity) {
-        WeatherSnapshot weatherSnapshot = getOrCreateWeatherSnapshot(time);
-        weatherSnapshot.putRainIntensity(pixelCoordinates, rainIntensity);
-    }
+    private static class InMemoryRainSnapshot implements RainSnapshot {
 
-    private WeatherSnapshot getOrCreateWeatherSnapshot(Time time) {
-        WeatherSnapshot weatherSnapshot = timeToWeatherSnapshot.get(time);
-        if (weatherSnapshot == null) {
-            weatherSnapshot = new WeatherSnapshot();
-            timeToWeatherSnapshot.put(time, weatherSnapshot);
-        }
-        return weatherSnapshot;
-    }
-
-    private static class WeatherSnapshot {
         private Map<PixelCoordinates, RainIntensity> pixelCoordinateToRainIntensity = new HashMap<PixelCoordinates, RainIntensity>();
 
-        public void putRainIntensity(PixelCoordinates pixelCoordinates, RainIntensity rainIntensity) {
+        public void storeRainIntensity(PixelCoordinates pixelCoordinates, RainIntensity rainIntensity) {
             pixelCoordinateToRainIntensity.put(pixelCoordinates, rainIntensity);
         }
 
-        public RainIntensity getRainIntensity(PixelCoordinates pixelCoordinates) {
-            return pixelCoordinateToRainIntensity.get(pixelCoordinates);
+        public RainIntensity lookupRainIntensity(PixelCoordinates pixelCoordinates) {
+            RainIntensity intensity = pixelCoordinateToRainIntensity.get(pixelCoordinates);
+            return intensity == null ? RainIntensity.NONE : intensity;
         }
     }
 }

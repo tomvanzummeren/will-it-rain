@@ -1,10 +1,11 @@
 package nl.tomvanzummeren.willitrain.importer;
 
+import nl.tomvanzummeren.willitrain.RainSnapshot;
 import nl.tomvanzummeren.willitrain.forecast.PixelCoordinates;
 import nl.tomvanzummeren.willitrain.forecast.RainForecast;
 import nl.tomvanzummeren.willitrain.forecast.RainIntensity;
-import nl.tomvanzummeren.willitrain.forecast.Time;
 import org.apache.sanselan.ImageReadException;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
@@ -25,13 +26,13 @@ import static nl.tomvanzummeren.willitrain.forecast.PixelCoordinates.*;
 @Component
 public class BuienRadarRainForecastImporter {
 
-    private RainForecast rainForecast;
-
-    private BuienradarImageLoader imageLoader;
-
     private static final int IMAGE_RANGE_MINIMUM_Y = 12;
 
     private static final int IMAGE_RANGE_MAXIMUM_Y = 500;
+
+    private final RainForecast rainForecast;
+
+    private final BuienradarImageLoader imageLoader;
 
     /**
      * Constructs a new {@code RainForecastImporter}.
@@ -52,15 +53,16 @@ public class BuienRadarRainForecastImporter {
      * @throws IOException        when unable to download the image
      * @throws ImageReadException when image is in an unsupported or illegal format
      */
-    public void importForTimeInFuture(Time timeInFuture) throws IOException, ImageReadException {
+    public void importForTimeInFuture(DateTime timeInFuture) throws IOException, ImageReadException {
         Resource forecastImageResource = imageLoader.loadRainForecastImage(timeInFuture);
-
         BufferedImage forecastImage = ImageIO.read(forecastImageResource.getInputStream());
+
+        RainSnapshot rainSnapshot = rainForecast.forRainSnapshot(timeInFuture);
 
         for (int y = 0; y < forecastImage.getHeight(); y++) {
             for (int x = 0; x < forecastImage.getWidth(); x++) {
-                if (pixelIndicatesRain(forecastImage, pixel(x, y))) {
-                    rainForecast.storeRainIntensity(timeInFuture, pixel(x, y), RainIntensity.RAIN);
+                if (indicatesRain(forecastImage, forPixel(x, y))) {
+                    rainSnapshot.storeRainIntensity(forPixel(x, y), RainIntensity.RAIN);
                 }
             }
         }
@@ -84,7 +86,7 @@ public class BuienRadarRainForecastImporter {
      * @param coordinates coordinates of the pixel
      * @return {@code true} if the pixel indicates rain, {@code false} if not
      */
-    private boolean pixelIndicatesRain(BufferedImage forecastImage, PixelCoordinates coordinates) {
+    private boolean indicatesRain(BufferedImage forecastImage, PixelCoordinates coordinates) {
         if (!withinRange(coordinates)) {
             return false;
         }

@@ -1,6 +1,10 @@
 package nl.tomvanzummeren.willitrain.forecast;
 
+import nl.tomvanzummeren.willitrain.RainSnapshot;
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
 
 /**
  * Uses a database to store and lookup the rain forecast.
@@ -10,11 +14,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class DatabaseRainForecast implements RainForecast {
 
-    public RainIntensity lookupRainIntensity(PixelCoordinates pixelCoordinates, Time time) throws ForecastNotFoundException {
-        throw new UnsupportedOperationException("implement");
-    }
+    private EntityManager entityManager;
 
-    public void storeRainIntensity(Time time, PixelCoordinates pixelCoordinates, RainIntensity rainIntensity) {
-        throw new UnsupportedOperationException("implement");
+    @Override
+    public RainSnapshot forRainSnapshot(DateTime time) {
+        return new DatabaseRainSnapshot(time, entityManager);
     }
 }

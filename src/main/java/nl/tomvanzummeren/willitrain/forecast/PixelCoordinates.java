@@ -22,7 +22,7 @@ public class PixelCoordinates {
         this.y = y;
     }
 
-    public static PixelCoordinates pixel(int x, int y) {
+    public static PixelCoordinates forPixel(int x, int y) {
         return new PixelCoordinates(x, y);
     }
 

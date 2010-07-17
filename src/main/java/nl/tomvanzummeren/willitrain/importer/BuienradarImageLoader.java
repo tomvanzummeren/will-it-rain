@@ -1,6 +1,6 @@
 package nl.tomvanzummeren.willitrain.importer;
 
-import nl.tomvanzummeren.willitrain.forecast.Time;
+import org.joda.time.DateTime;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BuienradarImageLoader {
 
-    public Resource loadRainForecastImage(Time time) {
-        throw new UnsupportedOperationException("not yet implemented");
+    public Resource loadRainForecastImage(DateTime time) {
+        throw new UnsupportedOperationException("implement");
     }
 }
