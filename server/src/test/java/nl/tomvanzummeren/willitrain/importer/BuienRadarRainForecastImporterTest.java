@@ -1,8 +1,7 @@
-package nl.tomvanzummeren.willitrain;
+package nl.tomvanzummeren.willitrain.importer;
 
+import nl.tomvanzummeren.willitrain.forecast.InMemoryRainForecast;
 import nl.tomvanzummeren.willitrain.forecast.RainSnapshot;
-import nl.tomvanzummeren.willitrain.importer.BuienradarImageLoader;
-import nl.tomvanzummeren.willitrain.importer.BuienradarRainForecastImporter;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;

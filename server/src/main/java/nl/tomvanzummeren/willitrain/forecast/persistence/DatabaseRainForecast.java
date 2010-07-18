@@ -1,5 +1,7 @@
-package nl.tomvanzummeren.willitrain.forecast;
+package nl.tomvanzummeren.willitrain.forecast.persistence;
 
+import nl.tomvanzummeren.willitrain.forecast.RainForecast;
+import nl.tomvanzummeren.willitrain.forecast.RainSnapshot;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
 

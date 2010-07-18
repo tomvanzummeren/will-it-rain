@@ -1,5 +1,8 @@
-package nl.tomvanzummeren.willitrain.forecast;
+package nl.tomvanzummeren.willitrain.forecast.persistence;
 
+import nl.tomvanzummeren.willitrain.forecast.PixelCoordinates;
+import nl.tomvanzummeren.willitrain.forecast.RainIntensity;
+import nl.tomvanzummeren.willitrain.forecast.RainSnapshot;
 import org.joda.time.DateTime;
 
 import javax.persistence.EntityManager;

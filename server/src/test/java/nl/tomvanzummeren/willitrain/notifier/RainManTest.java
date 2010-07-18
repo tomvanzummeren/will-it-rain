@@ -1,18 +1,14 @@
 package nl.tomvanzummeren.willitrain.notifier;
 
-import nl.tomvanzummeren.willitrain.forecast.Clock;
-import nl.tomvanzummeren.willitrain.forecast.PixelCoordinates;
-import nl.tomvanzummeren.willitrain.forecast.RainForecast;
-import nl.tomvanzummeren.willitrain.forecast.RainIntensity;
-import nl.tomvanzummeren.willitrain.forecast.RainSnapshot;
-import nl.tomvanzummeren.willitrain.forecast.StubRainSnapshot;
+import nl.tomvanzummeren.willitrain.forecast.*;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Tests {@link nl.tomvanzummeren.willitrain.notifier.RainMan}.
@@ -35,11 +31,13 @@ public class RainManTest {
         int fiveMinutesInFuture = 5;
         DateTime timeIn5Minutes = new DateTime();
         PixelCoordinates pixelCoordinates = anyPixelCoordinate();
-        RainSnapshot rainingSnapshot = new StubRainSnapshot(pixelCoordinates, RainIntensity.RAIN);
+
+        RainSnapshot rainSnapshot = new InMemoryRainSnapshot();
+        rainSnapshot.storeRainIntensity(pixelCoordinates, RainIntensity.RAIN);
 
         when(mockClock.minutesInFuture(fiveMinutesInFuture)).thenReturn(timeIn5Minutes);
         when(mockGeoLocationTranslator.toPixelCoordinates(geoLocation)).thenReturn(pixelCoordinates);
-        when(mockRainForecast.forRainSnapshot(timeIn5Minutes)).thenReturn(rainingSnapshot);
+        when(mockRainForecast.forRainSnapshot(timeIn5Minutes)).thenReturn(rainSnapshot);
 
         boolean willRain = rainMan.willItRain(geoLocation, fiveMinutesInFuture);
 
