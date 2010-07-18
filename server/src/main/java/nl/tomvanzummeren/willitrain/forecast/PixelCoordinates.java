@@ -1,15 +1,25 @@
 package nl.tomvanzummeren.willitrain.forecast;
 
+import javax.persistence.Embeddable;
+
 /**
  * Coordinates of one of the pixels within an image.
  *
  * @author Tom van Zummeren
  */
+@Embeddable
+@SuppressWarnings({"JpaObjectClassSignatureInspection"})
 public class PixelCoordinates {
 
     private int x;
 
     private int y;
+
+    /**
+     * Required by JPA. Do not call in code!
+     */
+    private PixelCoordinates() {
+    }
 
     /**
      * Constructs a new {@code PixelCoordinate} based on the given values.
