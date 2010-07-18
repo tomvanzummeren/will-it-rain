@@ -1,14 +1,18 @@
 package nl.tomvanzummeren.willitrain.notifier;
 
-import nl.tomvanzummeren.willitrain.forecast.*;
+import nl.tomvanzummeren.willitrain.forecast.Clock;
+import nl.tomvanzummeren.willitrain.forecast.InMemoryRainSnapshot;
+import nl.tomvanzummeren.willitrain.forecast.PixelCoordinates;
+import nl.tomvanzummeren.willitrain.forecast.RainForecast;
+import nl.tomvanzummeren.willitrain.forecast.RainIntensity;
+import nl.tomvanzummeren.willitrain.forecast.RainSnapshot;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 /**
  * Tests {@link nl.tomvanzummeren.willitrain.notifier.RainMan}.
@@ -32,8 +36,7 @@ public class RainManTest {
         DateTime timeIn5Minutes = new DateTime();
         PixelCoordinates pixelCoordinates = anyPixelCoordinate();
 
-        RainSnapshot rainSnapshot = new InMemoryRainSnapshot();
-        rainSnapshot.storeRainIntensity(pixelCoordinates, RainIntensity.RAIN);
+        RainSnapshot rainSnapshot = new InMemoryRainSnapshot(pixelCoordinates, RainIntensity.RAIN);
 
         when(mockClock.minutesInFuture(fiveMinutesInFuture)).thenReturn(timeIn5Minutes);
         when(mockGeoLocationTranslator.toPixelCoordinates(geoLocation)).thenReturn(pixelCoordinates);
