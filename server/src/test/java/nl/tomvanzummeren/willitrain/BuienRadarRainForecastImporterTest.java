@@ -55,7 +55,7 @@ public class BuienRadarRainForecastImporterTest {
         assertEquals(NONE, snapshot.lookupRainIntensity(forPixel(96, 426)));
         // Check a pixel that should not indicate rain because it's part of the time label in the top-left corner of the image
         assertEquals(NONE, snapshot.lookupRainIntensity(forPixel(9, 11)));
-        // Check a pixel that should not indicate rain because it's part of the time label in the bottom-left corner of the image
+        // Check a pixel that should not indicate rain because it's part of the Buienradar label in the bottom-left corner of the image
         assertEquals(NONE, snapshot.lookupRainIntensity(forPixel(9, 509)));
     }
 }

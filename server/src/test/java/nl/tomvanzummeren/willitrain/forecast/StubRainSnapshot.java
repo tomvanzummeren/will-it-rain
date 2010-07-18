@@ -8,6 +8,7 @@ import java.util.Map;
  *
  * @author Rob van der Linden Vooren
  */
+// TODO - Tom: Remove in favor of InMemoryRainSnapshot
 public class StubRainSnapshot implements RainSnapshot {
 
     private final Map<PixelCoordinates, RainIntensity> rainIntensity = new HashMap<PixelCoordinates, RainIntensity>();
