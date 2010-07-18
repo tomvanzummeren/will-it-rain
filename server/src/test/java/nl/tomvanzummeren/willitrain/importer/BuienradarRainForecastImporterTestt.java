@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
  *
  * @author Tom van Zummeren
  */
-public class BuienradarRainForecastImporterTest {
+public class BuienradarRainForecastImporterTestt {
 
     private BuienradarRainForecastImporter importerBuienradar;
 
