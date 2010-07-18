@@ -25,7 +25,7 @@ import static nl.tomvanzummeren.willitrain.forecast.PixelCoordinates.forPixel;
 @ContextConfiguration(locations = "/applicationContext.xml")
 @TransactionConfiguration
 @Transactional
-@Ignore
+@Ignore("Work in progress...")
 public class DatabaseRainForecastTest {
 
     private DatabaseRainForecast rainForecast;
