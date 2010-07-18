@@ -1,6 +1,7 @@
 package nl.tomvanzummeren.willitrain.forecast.persistence;
 
 import nl.tomvanzummeren.willitrain.forecast.RainIntensity;
+import nl.tomvanzummeren.willitrain.forecast.RainSnapshot;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -14,18 +15,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 
-import static nl.tomvanzummeren.willitrain.forecast.PixelCoordinates.forPixel;
+import static nl.tomvanzummeren.willitrain.forecast.PixelCoordinates.*;
 
 /**
+ * Tests {@link nl.tomvanzummeren.willitrain.forecast.persistence.DatabaseRainForecast}.
+ *
  * @author Tom van Zummeren
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/applicationContext.xml")
 @TransactionConfiguration
 @Transactional
-@Ignore
+@Ignore("Work in progress...")
 public class DatabaseRainForecastTest {
 
+    @Autowired
     private DataSource dataSource;
 
     private DatabaseRainForecast rainForecast;
@@ -37,11 +41,8 @@ public class DatabaseRainForecastTest {
 
     @Test
     public void storesRainIntensityInDatabase() throws Exception {
-        rainForecast.forRainSnapshot(new DateTime()).storeRainIntensity(forPixel(1, 2), RainIntensity.RAIN);
-    }
-
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+        DateTime now = new DateTime();
+        RainSnapshot rainSnapshot = rainForecast.forRainSnapshot(now);
+        rainSnapshot.storeRainIntensity(forPixel(1, 2), RainIntensity.RAIN);
     }
 }
