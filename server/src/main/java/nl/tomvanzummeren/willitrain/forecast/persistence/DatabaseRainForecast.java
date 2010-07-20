@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  * Uses a database to store and lookup the rain forecast.
@@ -15,6 +16,7 @@ import javax.persistence.EntityManager;
 @Repository
 public class DatabaseRainForecast implements RainForecast {
 
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Override

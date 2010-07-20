@@ -43,6 +43,10 @@ public class PixelRainIntensity {
         this.rainIntensity = rainIntensity;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public DateTime getDateTime() {
         return dateTime;
     }

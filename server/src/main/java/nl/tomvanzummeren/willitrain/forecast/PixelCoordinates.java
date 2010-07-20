@@ -1,5 +1,8 @@
 package nl.tomvanzummeren.willitrain.forecast;
 
+import org.springframework.util.Assert;
+
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -11,8 +14,10 @@ import javax.persistence.Embeddable;
 @SuppressWarnings({"JpaObjectClassSignatureInspection"})
 public class PixelCoordinates {
 
+    @Column
     private int x;
 
+    @Column
     private int y;
 
     /**
@@ -28,6 +33,8 @@ public class PixelCoordinates {
      * @param y vertical (y) part of the coordinate
      */
     private PixelCoordinates(int x, int y) {
+        Assert.isTrue(x >= 0, "x-coordinate cannot be negative");
+        Assert.isTrue(y >= 0, "y-coordinate cannot be negative");
         this.x = x;
         this.y = y;
     }
